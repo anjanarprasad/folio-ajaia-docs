@@ -1,0 +1,8 @@
+Folio launch planning
+
+Agenda
+Confirm the core document flow.
+Test editor formatting and autosave.
+Invite Alex as an editor.
+Invite Priya as a viewer.
+Verify refresh persistence.
