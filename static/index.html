@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Folio — Write better, together.</title>
+  <link rel="stylesheet" href="/static/app.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-mark">f<span>.</span></div><div><strong>folio</strong><small>WORKSPACE</small></div></div>
+    <button class="primary new-doc" id="new-doc"><span>＋</span> New document</button>
+    <div class="side-label">YOUR WORKSPACE</div>
+    <nav class="sidebar-nav">
+      <button class="nav-item active" data-filter="all"><span class="nav-icon">▤</span> All documents <b id="count-all">0</b></button>
+      <button class="nav-item" data-filter="mine"><span class="nav-icon">▱</span> Owned by me <b id="count-mine">0</b></button>
+      <button class="nav-item" data-filter="shared"><span class="nav-icon">♧</span> Shared with me <b id="count-shared">0</b></button>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="team-capsule"><div class="team-dot"></div> Team workspace <span>DEMO</span></div>
+      <label class="account-label" for="account">SWITCH DEMO ACCOUNT</label>
+      <div class="account-area"><div class="avatar" id="user-avatar">A</div><select id="account" aria-label="Switch user"></select></div>
+      <p class="demo-hint">Choose another account to test permissions and sharing.</p>
+    </div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><div class="breadcrumbs"><span>Workspace</span><span class="crumb-sep">/</span><strong id="location">All documents</strong></div><div class="top-actions"><span class="online-dot"></span> Demo environment <span class="top-divider"></span> <span id="top-user">Anjana</span></div></header>
+    <div id="dashboard" class="dashboard">
+      <section class="welcome"><div><span class="eyebrow">YOUR CREATIVE SPACE</span><h1>Ideas start here<span class="purple-period">.</span></h1><p>Every great idea deserves a place to grow. Pick up where you left off or start something new.</p></div><div class="welcome-icon">✳</div></section>
+      <section class="section-head"><div><h2 id="list-title">All documents</h2><p id="list-subtitle">Everything you're working on, in one place.</p></div><div class="section-actions"><button class="light-btn" id="import-btn">↥ Import .txt</button><button class="primary compact" id="create-btn">＋ Create new</button></div></section>
+      <div id="doc-grid" class="doc-grid"></div>
+      <div id="empty-state" class="empty-state" hidden><div class="empty-icon">✎</div><h3>Nothing here yet</h3><p>Create a document or import a text file to begin.</p><button class="primary" id="empty-create">Create a document</button></div>
+      <div class="dash-footer">A little space for big ideas. <span>✳</span></div>
+    </div>
+    <section id="editor-screen" class="editor-screen" hidden>
+      <div class="editor-header"><button class="back-btn" id="back-btn" aria-label="Back to documents">←</button><div class="doc-identity"><input id="doc-title" maxlength="100" aria-label="Document title"><div class="doc-meta"><span id="doc-access">Owner</span><span>•</span><span id="save-indicator" role="status">Saved</span></div></div><div class="editor-head-right"><div id="avatar-stack" class="avatar-stack"></div><button class="light-btn share-btn" id="share-btn">♧ Share</button></div></div>
+      <div class="toolbar" id="toolbar" aria-label="Formatting toolbar">
+        <select id="block-style" title="Text style" aria-label="Text style"><option value="p">Normal text</option><option value="h1">Heading 1</option><option value="h2">Heading 2</option></select>
+        <div class="toolbar-divider"></div>
+        <button data-cmd="bold" title="Bold (Ctrl+B)"><b>B</b></button><button data-cmd="italic" title="Italic (Ctrl+I)"><i>I</i></button><button data-cmd="underline" title="Underline (Ctrl+U)"><u>U</u></button>
+        <div class="toolbar-divider"></div>
+        <button data-cmd="insertUnorderedList" title="Bulleted list">☷</button><button data-cmd="insertOrderedList" title="Numbered list">≡</button>
+        <div class="toolbar-divider"></div><button id="clear-format" title="Remove formatting">T<span class="tiny-x">×</span></button>
+        <div class="toolbar-grow"></div><span class="toolbar-hint">Auto-save on</span><span class="auto-dot"></span>
+      </div>
+      <div class="editor-scroll"><article class="paper"><div class="page-top-rule"></div><div id="editor" contenteditable="true" role="textbox" aria-label="Document content" aria-multiline="true" data-placeholder="Start typing your story..."></div></article><p class="editor-footnote">Your changes are saved automatically. Made for focused work.</p></div>
+    </section>
+  </main>
+</div>
+<div id="share-modal" class="modal-overlay" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="share-title"><div class="modal-title-row"><div><span class="eyebrow">COLLABORATE</span><h2 id="share-title">Share document</h2></div><button class="icon-close" id="close-share" aria-label="Close">×</button></div><p class="modal-description">Invite someone from your demo workspace. Owners control access.</p><div id="share-controls"><label for="share-email">Invite a teammate</label><select id="share-email"></select><div class="share-inputs"><select id="share-role"><option value="edit">Can edit</option><option value="view">Can view</option></select><button class="primary" id="grant-share">Share</button></div></div><div class="shared-list-title">PEOPLE WITH ACCESS</div><div id="shared-people"></div><div class="modal-foot">This demo uses switchable seeded accounts instead of password-based login.</div></div></div>
+<input id="file-input" type="file" accept=".txt,text/plain" hidden>
+<div id="toast" class="toast" role="alert" hidden></div>
+</body>
+</html>
